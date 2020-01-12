@@ -5,6 +5,11 @@ Listen and streaming data to big query
 
 Provide package for logger
 
+## Use
+```
+go run main.go -tables .* -connect "postgresql://postgres:pass@localhost/database?sslmode=disable" -v true
+```
+
 ### Prerequisites
 
 Golang version 1.13 above
@@ -18,6 +23,7 @@ Runing
 ```
 go test
 ```
+
 
 ## Versioning
 
