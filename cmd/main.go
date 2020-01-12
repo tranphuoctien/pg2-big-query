@@ -9,6 +9,7 @@ import (
 	"os"
 	"regexp"
 	"time"
+	"encoding/json"
 
 	_ "net/http/pprof"
 
@@ -19,6 +20,7 @@ import (
 	_ "github.com/kardianos/minwinsvc" // import minwinsvc for windows service support
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	bigquery "cloud.google.com/go/bigquery"
 
 	ctxutil "g.ghn.vn/logistic/bi/streaming/pg2-big-query/ctxutil"
 	"g.ghn.vn/logistic/bi/streaming/pg2-big-query/pqs"
@@ -101,11 +103,20 @@ func run(ctx context.Context) error {
 		if err != nil {
 			log.Fatalln(err)
 		}
-		fmt.Println("sbd:", sbd)
+		byt := []byte(sbd)
+		var datampp map[string]bigquery.Value
+		if err := json.Unmarshal(byt, &datampp); err != nil {
+			log.Fatalln(err)
+		}
+		fmt.Println("datampp:", datampp)
 	}
 
 	if err = server.HandleEvents(ctx, sb); err != nil {
 		log.Fatalln(err)
 	}
 	return err
+}
+
+func bqInsert(djson map[string]interface{}){
+
 }
