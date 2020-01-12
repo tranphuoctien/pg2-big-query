@@ -3,9 +3,10 @@ module g.ghn.vn/logistic/bi/streaming/pg2-big-query
 go 1.13
 
 require (
+	cloud.google.com/go/bigquery v1.3.0
 	github.com/evanphx/json-patch v4.5.0+incompatible
 	github.com/golang/protobuf v1.3.2
-	github.com/google/go-cmp v0.2.0
+	github.com/google/go-cmp v0.3.0
 	github.com/google/gops v0.3.6
 	github.com/kardianos/minwinsvc v0.0.0-20151122163309-cad6b2b879b0
 	github.com/lib/pq v1.3.0
