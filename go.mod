@@ -14,5 +14,6 @@ require (
 	github.com/sirupsen/logrus v1.4.2
 	github.com/tmc/pqstream v0.0.0-20191018194042-c9027a0afa15
 	golang.org/x/net v0.0.0-20191209160850-c0dbc17a3553
+	google.golang.org/api v0.13.0
 	google.golang.org/grpc v1.26.0
 )

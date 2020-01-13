@@ -20,11 +20,11 @@ import (
 	_ "github.com/kardianos/minwinsvc" // import minwinsvc for windows service support
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	bigquery "cloud.google.com/go/bigquery"
 
 	ctxutil "g.ghn.vn/logistic/bi/streaming/pg2-big-query/ctxutil"
 	"g.ghn.vn/logistic/bi/streaming/pg2-big-query/pqs"
 	"g.ghn.vn/logistic/bi/streaming/pg2-big-query"
+	bgs "g.ghn.vn/logistic/bi/streaming/pg2-big-query/bgs"
 	
 )
 
@@ -97,6 +97,16 @@ func run(ctx context.Context) error {
 		return errors.Wrap(err, "InstallTriggers")
 	}
 
+	// struct can be change
+	type Device struct {
+		ID int `json:"id"` 
+		Code  string `json:"code,"`
+		Devicetypename string `json:"device_type_name"`
+		Description string `json:"description"`
+	}
+	// should be change by config
+	bigstream := bgs.New(`big-query-1992`,`../bgs/sk.json`,`my_table`,`new_data_set`)
+	bigstream.AddSchema(Device{})
 	sb := func(e *pqs.Event) {
 		
 		m := &jsonpb.Marshaler{}
@@ -106,12 +116,13 @@ func run(ctx context.Context) error {
 		}
 
 		byt := []byte(sbd)
-		var datampp map[string]bigquery.Value
+		var datampp Device
 		if err := json.Unmarshal(byt, &datampp); err != nil {
 			log.Fatalln(err)
 		}
-		
-		fmt.Println("datampp:", datampp)
+		fmt.Println("data streaming :", datampp)
+		err = bigstream.AddRow(datampp)
+		fmt.Println("[add row] :", err)
 	}
 
 	if err = server.HandleEvents(ctx, sb); err != nil {
