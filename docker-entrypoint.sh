@@ -43,7 +43,7 @@ docker_setup_env() {
 }
 
 docker_run_pgsd(){
-    exec pqsd -connect "postgresql://postgres:gtsa4934@34.87.81.32/iot?sslmode=disable"
+    exec pqsd -connect "postgresql://postgres:pass@localhost/iot?sslmode=disable"
 }
 
 _main() {
