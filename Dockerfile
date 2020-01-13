@@ -8,7 +8,6 @@ RUN go env -w GOPRIVATE=g.ghn.vn/logistic/*
 RUN git config --global \
   url."https://tientp:qH8uisEJZZNrxxcdwy-c@g.ghn.vn/".insteadOf \
   "https://g.ghn.vn/"
-RUN go get -u -v github.com/tmc/pqstream/cmd/...
 # COPY the source code as the last step
 COPY go.mod .
 COPY go.sum .
@@ -21,5 +20,4 @@ RUN ls /go/bin/
 # Run docker entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
-EXPOSE 7000
-# CMD ["pqsd"]
+CMD ["pqsd"]
