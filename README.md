@@ -7,7 +7,7 @@ Provide package for logger
 
 ## Use
 ```
-go run main.go -tables .* -connect "postgresql://postgres:pass@localhost/database?sslmode=disable" -v true
+go run cmd/main.go -tables .* -connect "postgresql://postgres:pass@localhost/database?sslmode=disable" -v true
 ```
 
 ### Prerequisites

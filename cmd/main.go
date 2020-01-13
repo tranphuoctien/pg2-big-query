@@ -98,16 +98,19 @@ func run(ctx context.Context) error {
 	}
 
 	sb := func(e *pqs.Event) {
+		
 		m := &jsonpb.Marshaler{}
 		sbd, err := m.MarshalToString(e.GetPayload())
 		if err != nil {
 			log.Fatalln(err)
 		}
+
 		byt := []byte(sbd)
 		var datampp map[string]bigquery.Value
 		if err := json.Unmarshal(byt, &datampp); err != nil {
 			log.Fatalln(err)
 		}
+		
 		fmt.Println("datampp:", datampp)
 	}
 
