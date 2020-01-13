@@ -31,6 +31,6 @@ This project is the current develop
 
 ## Authors
 
-* **Tien TPT** - *Initial work* - [TanTM](https://g.ghn.vn/tientp)
+* **Tien TP** - *Initial work* - [TienTP](https://g.ghn.vn/tientp)
 
 See also the list of [contributors](https://g.ghn.vn/logistic/bi/streaming/pg2-big-query/master) who participated in this project.
