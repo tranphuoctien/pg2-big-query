@@ -14,7 +14,7 @@ After that then can replace content into folder bgs with file ***sk.json***
 Then you can change your schema on line 100 in ***example/main.go*** to match what you need.
 
 ```
-go run cmd/main.go -tables .* -connect "postgresql://postgres:pass@localhost/database?sslmode=disable" -v true
+go run main.go -tables .* -connect "postgresql://postgres:pass@localhost/database?sslmode=disable" -v true
 ```
 
 ### Prerequisites
