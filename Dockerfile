@@ -6,8 +6,8 @@ WORKDIR /app
 RUN go env -w GOPRIVATE=g.ghn.vn/logistic/*
 #RUN go env -w GOPROXY=https://goproxy.io,direct
 RUN git config --global \
-  url."https://tientp:qH8uisEJZZNrxxcdwy-c@g.ghn.vn/".insteadOf \
-  "https://g.ghn.vn/"
+  url."https://tientp:token-personal-c@gitlab.com/".insteadOf \
+  "https://gitlab.com/"
 # COPY the source code as the last step
 COPY go.mod .
 COPY go.sum .
